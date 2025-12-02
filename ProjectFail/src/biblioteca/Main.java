@@ -65,7 +65,8 @@ public class Main {
         int disponibles = scanner.nextInt();
 
         Libro libro = new Libro(isbn, titulo, autor, anio, totales, disponibles);
-        this.servicio.registrarLibro(libro);
+        BibliotecaService s = new BibliotecaService();
+        s.registrarLibro(libro);
     }
 
     private void registrarUsuarioDesdeConsola(Scanner scanner) {
