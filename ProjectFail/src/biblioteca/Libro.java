@@ -16,7 +16,7 @@ public class Libro {
         this.autor = autor;
         this.anioPublicacion = anioPublicacion; // <- variable mal escrita
         this.ejemplaresTotales = ejemplaresTotales;
-        Libro.ejemplaresDisponibles = ejemplaresDisponibles;
+        this.ejemplaresDisponibles = ejemplaresDisponibles;
     }
 
     public String getIsbn() {

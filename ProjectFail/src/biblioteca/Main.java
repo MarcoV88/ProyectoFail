@@ -8,7 +8,6 @@ public class Main {
     }
     BibliotecaService s = new BibliotecaService();
 
-
     private void ejecutarMenu() {
         Scanner scanner = new Scanner(System.in);
 

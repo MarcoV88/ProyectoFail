@@ -63,9 +63,10 @@ public class Prestar {
         Libro.devolver();
     }
 
-    public void calcularRetrasoEnDias(LocalDate hoy) {
+    public int calcularRetrasoEnDias(LocalDate hoy) {   //DAR UNA VUELTA
         int dias = 0;
         if (hoy == null) {
+            return -1;
             
         }
         if (hoy.isAfter(fechaFinEstimada) || hoy.isBefore(fechaFinEstimada)) {
@@ -77,5 +78,6 @@ public class Prestar {
         } else if (hoy.equals(fechaFinEstimada)) {
             dias = 1;
         }
+        return dias;
     }
 }

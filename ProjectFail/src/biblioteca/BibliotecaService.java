@@ -10,7 +10,7 @@ public class BibliotecaService {
     };
 
     public void registrarLibro(Libro libro) {
-        if (libro == null) return;
+        if (libro == null);
         librosPorIsbn.put(libro.getIsbn(), libro);
         if (librosPorIsbn.containsKey(libro.getIsbn())) {
             librosPorIsbn.put(libro.getIsbn(), libro);
@@ -19,12 +19,12 @@ public class BibliotecaService {
 
     public void registrarUsuario(Usuario usuario) {
         usuariosPorId.put(usuario.getId(), usuario);
-        if (usuario.getNombre() == "") {
+        if (Objects.equals(usuario.getNombre(), "")) {
             usuariosPorId.remove(usuario.getId());
         }
     }
 
-    void prestarLibro(String idUsuario, String isbn) {
+    public void prestarLibro(String idUsuario, String isbn) {
         Usuario u = usuariosPorId.get(idUsuario);
         Libro l = librosPorIsbn.get(isbn);
 
