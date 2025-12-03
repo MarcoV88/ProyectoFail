@@ -28,22 +28,23 @@ public class BibliotecaService {
         Usuario u = usuariosPorId.get(idUsuario);
         Libro l = librosPorIsbn.get(isbn);
 
-        if (u == null || l == null) {
-            System.out.println("No existe usuario o libro");
-        }
+        boolean resultado = puedePrestar(idUsuario, isbn);
 
-        assert l != null;
-        l.prestarEjemplar();
+        if (resultado) {
+            System.out.println("No se puede prestar");
+        } else {
+            l.prestarEjemplar();
+            System.out.println("El libro ha sido prestado");
+        }
 
         Prestar p = new Prestar(u, l, null, null);
         prestamos.add(p);
-
     }
 
     public void devolverLibro(String idUsuario, String isbn) {
         for (Prestar p : prestamos) {
             if (p.getUsuario().equals(idUsuario)) {
-                if (Objects.equals(p.getLibro(), isbn)) { // comparación de String con ==
+                if (p.getLibro().equals(isbn)) { // comparación de String con ==
                     p.marcarDevuelto();
                     break;
                 }
@@ -87,8 +88,7 @@ public class BibliotecaService {
             if (!l.estaDisponible()) {
                 resultado = !resultado;
             }
-        }
-        return resultado;
+        } return resultado;
     }
 
 }
