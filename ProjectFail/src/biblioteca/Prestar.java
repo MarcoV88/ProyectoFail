@@ -65,19 +65,20 @@ public class Prestar {
 
     public int calcularRetrasoEnDias(LocalDate hoy) {   //DAR UNA VUELTA
         int dias = 0;
-        if (hoy == null) {
-            return -1;
-            
-        }
         if (hoy.isAfter(fechaFinEstimada) || hoy.isBefore(fechaFinEstimada)) {
 
-            dias = hoy.getDayOfYear() - fechaFinEstimada.getDayOfYear();
+            dias = fechaFinEstimada.getDayOfYear() - hoy.getDayOfYear();
             if (dias < 0) {
                 dias = dias * -1;
+                System.out.println("Llevas "+dias+ " de retraso");
+            } else if (dias > 0) {
+                System.out.println("Has devuelto el libro "+dias+ " dias antes, ¡Enhorabuena!");
             }
         } else if (hoy.equals(fechaFinEstimada)) {
             dias = 1;
+            System.out.println("Hoy es el último día para devolverlo.");
         }
+
         return dias;
     }
 }

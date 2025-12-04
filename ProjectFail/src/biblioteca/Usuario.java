@@ -14,7 +14,7 @@ public class Usuario {
         this.id = id;
         this.nombre = nombre;
         this.maximoPrestamosSimultaneos = 3;
-        prestamosActivos = null;
+        this.prestamosActivos = null;
     }
 
     public String getId() {
@@ -30,16 +30,12 @@ public class Usuario {
     }
 
     public void setMaximoPrestamosSimultaneos(int maximoPrestamosSimultaneos) {
-        if (maximoPrestamosSimultaneos < 0) {
-            this.maximoPrestamosSimultaneos = 0;
-        }
-
+        this.maximoPrestamosSimultaneos = maximoPrestamosSimultaneos;
     }
 
     public List<Prestar> getPrestamosActivos() {
-        return prestamosActivos; // <- nombre de campo incorrecto
+        return prestamosActivos;
     }
-
 
     public boolean tieneHuecoParaOtroPrestamo() {
         int contador = 0;

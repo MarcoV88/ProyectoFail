@@ -1,4 +1,5 @@
 package biblioteca;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
@@ -6,7 +7,7 @@ public class Main {
     public void main(String[] argumentos) {
         ejecutarMenu();
     }
-    BibliotecaService s = new BibliotecaService();
+    BibliotecaService service = new BibliotecaService();
 
     private void ejecutarMenu() {
         Scanner scanner = new Scanner(System.in);
@@ -60,7 +61,7 @@ public class Main {
         int disponibles = scanner.nextInt();
 
         Libro libro = new Libro(isbn, titulo, autor, anio, totales, disponibles);
-        s.registrarLibro(libro);
+        service.registrarLibro(libro);
     }
 
     private void registrarUsuarioDesdeConsola(Scanner scanner) {
@@ -70,7 +71,7 @@ public class Main {
         String nombre = scanner.next();
 
         Usuario usuario = new Usuario(id, nombre);
-        s.registrarUsuario(usuario);
+        service.registrarUsuario(usuario);
     }
 
     private void prestarLibroDesdeConsola(Scanner scanner) {
@@ -79,7 +80,7 @@ public class Main {
         System.out.print("ISBN libro: ");
         String isbn = scanner.next();
 
-        s.prestarLibro(id, isbn);
+        service.prestarLibro(id, isbn);
     }
 
     private void devolverLibroDesdeConsola(Scanner scanner) {
@@ -88,6 +89,7 @@ public class Main {
         System.out.print("ISBN libro: ");
         String isbn = scanner.next();
 
-        s.devolverLibro(id, isbn);
+        service.devolverLibro(id, isbn);
     }
+
 }

@@ -1,5 +1,6 @@
 package biblioteca;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class BibliotecaService {
@@ -25,27 +26,32 @@ public class BibliotecaService {
     }
 
     public void prestarLibro(String idUsuario, String isbn) {
-        Usuario u = usuariosPorId.get(idUsuario);
-        Libro l = librosPorIsbn.get(isbn);
+        Usuario usuario = usuariosPorId.get(idUsuario);
+        Libro libro = librosPorIsbn.get(isbn);
+        LocalDate fecha = LocalDate.now();
+        LocalDate fechaFin = LocalDate.now().plusDays(15);
+        Prestar prestar = new Prestar(usuario, libro, fecha, fechaFin);
+        prestamos.add(prestar);
 
         boolean resultado = puedePrestar(idUsuario, isbn);
 
         if (resultado) {
             System.out.println("No se puede prestar");
         } else {
-            l.prestarEjemplar();
+            libro.prestarEjemplar();
             System.out.println("El libro ha sido prestado");
+            usuario.getPrestamosActivos().add(prestar);
         }
 
-        Prestar p = new Prestar(u, l, null, null);
-        prestamos.add(p);
+
     }
 
     public void devolverLibro(String idUsuario, String isbn) {
-        for (Prestar p : prestamos) {
-            if (p.getUsuario().equals(idUsuario)) {
-                if (p.getLibro().equals(isbn)) { // comparación de String con ==
-                    p.marcarDevuelto();
+        for (Prestar prestar : prestamos) {
+            if (prestar.getUsuario().equals(idUsuario)) {
+                if (prestar.getLibro().equals(isbn)) { // comparación de String con ==
+                    prestar.marcarDevuelto();
+                    prestar.calcularRetrasoEnDias(prestamos.get(0).getFechaInicio());
                     break;
                 }
             }
